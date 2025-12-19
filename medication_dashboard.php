@@ -83,19 +83,6 @@ if ($conn) {
       margin-right: -50vw;
     }
 
-    /* inner rounded card border like the Figma */
-    .inner-card {
-      border: 5px solid #b71c1c;
-      border-radius: 18px;
-      background: #fff;
-    }
-
-    /* subtle table cell border color */
-    .tbl-border td, .tbl-border th {
-      border: 1px solid rgba(191, 54, 54, 0.25);
-    }
-
-
 
     /* keep header profile box border */
     .profile-box {
@@ -232,16 +219,16 @@ if ($conn) {
   <div class="diag-right hidden lg:block"></div>
 
   <!-- MAIN centered content wrapper -->
-  <main class="relative z-30 max-w-7xl mx-auto px-6 pt-8 pb-16">
+  <main class="relative z-30 w-full px-6 pt-8 pb-16">
 
     <!-- MAIN centered content wrapper -->
     <div class="w-full mx-auto">
-        <div class="inner-card p-6 shadow-lg">
+        <div>
 
           <!-- Inner white area with extra rounded corners like the Figma panel -->
           <div class="bg-white rounded-xl p-6" style="border-radius:14px;">
             <!-- Title -->
-            <div class="text-center mb-6">
+            <div class="text-left mb-6">
               <h1 class="text-3xl font-bold">Medicine Supplies</h1>
             </div>
 
@@ -249,7 +236,7 @@ if ($conn) {
             <div class="flex justify-end items-center mb-6">
               <div>
                 <button onclick="document.getElementById('addModal').classList.remove('hidden')"
-                        class="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700">
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">
                   + Add Medicine
                 </button>
               </div>
@@ -281,7 +268,7 @@ if ($conn) {
                       <th class="px-4 py-2 text-left"><i class="fas fa-calendar-alt"></i> Delivery Date</th>
                       <th class="px-4 py-2 text-left"><i class="fas fa-calendar-times"></i> Expiration Date</th>
                       <th class="px-4 py-2 text-left"><i class="fas fa-sticky-note"></i> Notes</th>
-                      <th class="px-4 py-2 text-center"><i class="fas fa-cogs"></i> Action</th>
+                      <th class="px-4 py-2 text-left"><i class="fas fa-cogs"></i> Action</th>
                     </tr>
                   </thead>
 
@@ -310,7 +297,7 @@ if ($conn) {
                           <td class="px-4 py-2"><?= htmlspecialchars($row['delivery_date'] ?? '') ?></td>
                           <td class="px-4 py-2 <?= $expiration_class ?>"><?= htmlspecialchars($row['expiration_date']) ?><?php if (strtotime($row['expiration_date']) < time()) echo ' ⚠️ Expired'; ?></td>
                           <td class="px-4 py-2"><?= htmlspecialchars($row['notes'] ?? '') ?></td>
-                          <td class="px-4 py-2 text-center">
+                          <td class="px-4 py-2 text-left">
                             <button
                               data-id="<?= $row['id'] ?>"
                               data-brand="<?= htmlspecialchars($row['brand'] ?? '') ?>"
@@ -335,7 +322,7 @@ if ($conn) {
                       <?php endwhile; ?>
                     <?php else: ?>
                       <tr>
-                        <td colspan="9" class="text-center py-8 text-gray-500">No medication data found.</td>
+                        <td colspan="9" class="text-left py-8 text-gray-500">No medication data found.</td>
                       </tr>
                     <?php endif; ?>
                   </tbody>
@@ -367,7 +354,7 @@ if ($conn) {
         <textarea name="notes" placeholder="Notes" class="w-full border p-2 rounded"></textarea>
         <div class="flex justify-end gap-2">
           <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="px-3 py-2 border rounded">Cancel</button>
-          <button type="submit" class="bg-green-600 text-white px-3 py-2 rounded hover:bg-green-700">Save</button>
+          <button type="submit" class="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700">Save</button>
         </div>
       </form>
     </div>
